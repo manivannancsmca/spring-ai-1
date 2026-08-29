@@ -33,21 +33,32 @@ public class ChatController {
     @Value("classpath:/prompts/prompt1.st")
     private Resource promptResource;
 
+    private static final String LANGUAGE_ANALYSIS_PROMPT = """
+            Analyze the programming language: {language}
+
+            popularity score: between 1-10, 1 is low, 10 is high
+            learningDifficulty: either of these 3 values: "Easy", "Medium", "Hard"
+            {format}
+            """;
+
     public ChatController(ChatClient.Builder builder) {
         this.chatClient = builder
-                .defaultSystem("You are a helpful AI assistant. You are expected to answer the questions related to the given domain." +
-                        "Any question that is asked outside of the domain, decline it by responding to user that " +
-                        "'I specialize in the given domain and I can't answer any query outside it'.")
+                .defaultSystem(
+                        "You are a helpful AI assistant. You are expected to answer the questions related to the given domain."
+                                +
+                                "Any question that is asked outside of the domain, decline it by responding to user that "
+                                +
+                                "'I specialize in the given domain and I can't answer any query outside it'.")
                 .build();
     }
 
-//    Your Controller handler
-//        → ChatClient.prompt().user("...").call()
-//            → Spring AI builds a Prompt object
-//                → OpenAiChatModel sends HTTP POST to api.openai.com/v1/chat/completions
-//                    → Response is parsed into ChatResponse
-//                        → .content() extracts the text
-//
+    // Your Controller handler
+    // → ChatClient.prompt().user("...").call()
+    // → Spring AI builds a Prompt object
+    // → OpenAiChatModel sends HTTP POST to api.openai.com/v1/chat/completions
+    // → Response is parsed into ChatResponse
+    // → .content() extracts the text
+    //
     @GetMapping("/ask")
     public String ask() {
         return chatClient
@@ -67,7 +78,6 @@ public class ChatController {
                 .content();
     }
 
-
     // prompt templates
     // inject some variables, and change prompt dynamically
 
@@ -76,15 +86,15 @@ public class ChatController {
         String promptTemplate = """
                 You are a world-class expert in {domain}.
                 Answer the following question clearly and concisely.
-                
+
                 Question: {question}
                 """;
 
         return chatClient
                 .prompt()
                 .user(u -> u.text(promptTemplate)
-                            .param("domain", domain)
-                            .param("question", question))
+                        .param("domain", domain)
+                        .param("question", question))
                 .call()
                 .content();
     }
@@ -122,13 +132,7 @@ public class ChatController {
 
         return chatClient
                 .prompt()
-                .user(u -> u.text("""
-                        Analyze the programming language: {language}
-                        
-                        popularity score: between 1-10, 1 is low, 10 is high
-                        learningDifficulty: either of these 3 values: "Easy", "Medium", "Hard"
-                        {format}
-                        """)
+                .user(u -> u.text(LANGUAGE_ANALYSIS_PROMPT)
                         .param("language", language)
                         .param("format", converter.getFormat()))
                 .call()
@@ -140,19 +144,19 @@ public class ChatController {
 
         var converter = new BeanOutputConverter<>(
                 new ParameterizedTypeReference<List<ProjectIdea>>() {
-                }
-        );
+                });
 
         return chatClient.prompt()
                 .user(u -> u.text("""
                         Suggest 3 beginner project ideas for a developer using {techStack}.
-                        
+
                         {format}
                         """)
                         .param("techStack", techStack)
                         .param("format", converter.getFormat()))
                 .call()
-                .entity(new ParameterizedTypeReference<>(){});
+                .entity(new ParameterizedTypeReference<>() {
+                });
     }
 
     @GetMapping("/ask4")
