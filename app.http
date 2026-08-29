@@ -1,0 +1,90 @@
+### Base URL
+@host = http://localhost:8084
+
+### ============================================================
+### 1. Basic AI Question
+### GET /api/ai/ask
+### ============================================================
+
+GET {{host}}/api/ai/ask
+
+
+### ============================================================
+### 2. Streaming Response
+### GET /api/ai/stream
+### ============================================================
+
+GET {{host}}/api/ai/stream
+Accept: text/event-stream
+
+
+### ============================================================
+### 3. Prompt Template
+### GET /api/ai/ask2
+### ============================================================
+
+GET {{host}}/api/ai/ask2?domain=Spring%20AI&question=What%20are%20the%20main%20features%20of%20Spring%20AI?
+
+
+### Another ask2 example
+GET {{host}}/api/ai/ask2?domain=Docker&question=Explain%20the%20difference%20between%20Docker%20volumes%20and%20bind%20mounts.
+
+
+### ============================================================
+### 4. PromptTemplate with External File
+### GET /api/ai/ask3
+### ============================================================
+
+GET {{host}}/api/ai/ask3?domain=Java&question=Explain%20the%20difference%20between%20an%20interface%20and%20an%20abstract%20class.
+
+
+### Another ask3 example
+GET {{host}}/api/ai/ask3?domain=PostgreSQL&question=What%20is%20the%20purpose%20of%20an%20index?
+
+
+### ============================================================
+### 5. Structured Output - Actor Filmography
+### GET /api/ai/str-ask
+### ============================================================
+
+GET {{host}}/api/ai/str-ask
+
+
+### ============================================================
+### 6. Structured Output - Language Analysis
+### GET /api/ai/analyze-language
+### ============================================================
+
+GET {{host}}/api/ai/analyze-language?language=Java
+
+
+### Other language
+GET {{host}}/api/ai/analyze-language?language=Python
+
+
+### Other language
+GET {{host}}/api/ai/analyze-language?language=Rust
+
+
+### ============================================================
+### 7. Structured List Output - Project Suggestions
+### GET /api/ai/suggest-projects
+### ============================================================
+
+GET {{host}}/api/ai/suggest-projects?techStack=Java%2CSpring%20Boot%2CPostgreSQL
+
+
+### Another project suggestion
+GET {{host}}/api/ai/suggest-projects?techStack=Python%2CFastAPI%2CMachine%20Learning
+
+
+### ============================================================
+### 8. Free-form User Prompt
+### GET /api/ai/ask
+### ============================================================
+
+GET {{host}}/api/ai/ask?message=Explain%20Spring%20AI%20in%20simple%20terms
+
+
+### Another free-form prompt
+GET {{host}}/api/ai/ask?message=What%20is%20the%20difference%20between%20RAG%20and%20fine-tuning%3F
