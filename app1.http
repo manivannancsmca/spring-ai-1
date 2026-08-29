@@ -1,0 +1,48 @@
+@host = http://localhost:8084
+
+
+### ============================================================
+### Chat Memory - First message
+### conversationId = 1001
+### ============================================================
+
+GET {{host}}/api/ai/chat?message=My%20name%20is%20John&conversationId=1001
+
+
+### ============================================================
+### Chat Memory - Ask about previous message
+### Same conversationId = 1001
+### ============================================================
+
+GET {{host}}/api/ai/chat?message=What%20is%20my%20name%3F&conversationId=1001
+
+
+### ============================================================
+### Chat Memory - Continue conversation
+### ============================================================
+
+GET {{host}}/api/ai/chat?message=What%20programming%20language%20should%20I%20learn%3F&conversationId=1001
+
+
+### ============================================================
+### Chat Memory - Follow-up question
+### Same conversationId = 1001
+### ============================================================
+
+GET {{host}}/api/ai/chat?message=Why%20do%20you%20recommend%20it%3F&conversationId=1001
+
+
+### ============================================================
+### New conversation
+### conversationId = 2002
+### ============================================================
+
+GET {{host}}/api/ai/chat?message=My%20name%20is%20Alice&conversationId=2002
+
+
+### ============================================================
+### New conversation should NOT know John's name
+### conversationId = 2002
+### ============================================================
+
+GET {{host}}/api/ai/chat?message=What%20is%20my%20name%3F&conversationId=2002
