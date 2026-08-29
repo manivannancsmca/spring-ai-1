@@ -1,3 +1,24 @@
+server:
+  port:  80801
+
 spring:
   application:
     name: spring-ai-1
+
+  ai:
+    ollama:
+      base-url: http://localhost:11434
+      chat:
+        model: llama3
+
+    chat:
+      memory:
+        repository:
+          jdbc:
+            initialize-schema: always
+
+  datasource:
+    url: jdbc:postgresql://localhost:5432/memory_db
+    username: postgres
+    password: 12345
+    driver-class-name: org.postgresql.Driver
