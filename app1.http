@@ -6,7 +6,7 @@
 ### conversationId = 1001
 ### ============================================================
 
-GET {{host}}/api/ai/chat?message=My%20name%20is%20John&conversationId=1001
+GET {{host}}/api/ai/chat?message=My%20name%20is%Mani&conversationId=1001
 
 
 ### ============================================================
