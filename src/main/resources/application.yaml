@@ -19,6 +19,6 @@ spring:
 
   datasource:
     url: jdbc:postgresql://localhost:5432/memory_db
-    username: postgres
-    password: 12345
+    username: raguser
+    password: ragpassword
     driver-class-name: org.postgresql.Driver
