@@ -69,6 +69,7 @@ public class ChatController {
     }
 
     // streaming response
+    
     @GetMapping(value = "/stream", produces = MediaType.TEXT_EVENT_STREAM_VALUE)
     public Flux<String> stream() {
         return chatClient
@@ -80,7 +81,6 @@ public class ChatController {
 
     // prompt templates
     // inject some variables, and change prompt dynamically
-
     @GetMapping("/ask2")
     public String ask2(@RequestParam String domain, @RequestParam String question) {
         String promptTemplate = """
