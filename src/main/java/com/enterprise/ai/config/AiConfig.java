@@ -17,7 +17,6 @@ public class AiConfig {
 //                .maxMessages(10) // 10 last messages at once, 11th message -> 1st removed
 //                .build();
 //    }
-
     @Bean
     public ChatMemory chatMemory(JdbcChatMemoryRepository repository) {
         return MessageWindowChatMemory.builder()
@@ -32,4 +31,5 @@ public class AiConfig {
                 .defaultAdvisors(MessageChatMemoryAdvisor.builder(chatMemory).build())
                 .build();
     }
+
 }
