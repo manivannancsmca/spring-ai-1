@@ -1,6 +1,5 @@
 @host = http://localhost:8084
 
-
 ### ============================================================
 ### Chat Memory - First message
 ### conversationId = 1001
@@ -8,14 +7,12 @@
 
 GET {{host}}/api/ai/chat?message=My%20name%20is%Mani&conversationId=1001
 
-
 ### ============================================================
 ### Chat Memory - Ask about previous message
 ### Same conversationId = 1001
 ### ============================================================
 
 GET {{host}}/api/ai/chat?message=What%20is%20my%20name%3F&conversationId=1001
-
 
 ### ============================================================
 ### Chat Memory - Continue conversation
