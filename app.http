@@ -8,7 +8,6 @@
 
 GET {{host}}/api/ai/ask
 
-
 ### ============================================================
 ### 2. Streaming Response
 ### GET /api/ai/stream
@@ -17,14 +16,12 @@ GET {{host}}/api/ai/ask
 GET {{host}}/api/ai/stream
 Accept: text/event-stream
 
-
 ### ============================================================
 ### 3. Prompt Template
 ### GET /api/ai/ask2
 ### ============================================================
 
 GET {{host}}/api/ai/ask2?domain=Spring%20AI&question=What%20are%20the%20main%20features%20of%20Spring%20AI?
-
 
 ### Another ask2 example
 GET {{host}}/api/ai/ask2?domain=Docker&question=Explain%20the%20difference%20between%20Docker%20volumes%20and%20bind%20mounts.
